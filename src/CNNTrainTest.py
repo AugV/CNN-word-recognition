@@ -19,10 +19,13 @@ import cv2
 from keras import backend as K
 
 from keras.utils import np_utils
-from src import multi_gpu
+
+import multi_gpu
 
 
 def cnn_TrainTest(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_type,  experiment_folder, input_data_dir, data_sub_type='', setSize = 1, width=128, height=128, chanels = 3, test_b_size=32):
+
+
  #set the tf seession
     sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
     K.set_session(sess)
@@ -47,8 +50,9 @@ def cnn_TrainTest(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_typ
         train_data_dir = input_data_dir + datatype + '/' + exp_folder + '/train/'
         validation_data_dir = input_data_dir + datatype + '/' + exp_folder + '/validate/'
         test_data_dir = input_data_dir + datatype + '/' + exp_folder + '/test/'
+        print(train_data_dir);
         #path = '/home/gpu/Documents/PycharmProjects/' + datatype + '/Results'
-        path = input_data_dir + datatype +  '/Results'
+        path = input_data_dir + datatype + '/Results'
     else:
         train_data_dir = input_data_dir + datatype + '/' + data_sub_type +'/'+ exp_folder + '/train/'
         validation_data_dir = input_data_dir + datatype + '/' + data_sub_type +'/'+ exp_folder + '/validate/'

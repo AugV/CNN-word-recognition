@@ -7,10 +7,10 @@ from shutil import copyfile, rmtree
 
 
 def constructSets():
-    no_of_classes = 1
+    no_of_classes = 2
     # dir_in_ = '/home/gpu/Documents/Data/Spectr_full/'
-    dir_in_ = "C:\\Users\\Augustinas\\OneDrive\\VGTU.V\\Prog.kurimo procesas\\CnnApp\\resources\\pngs\\"
-    dir_out_ = 'C:/Users/Augustinas/OneDrive/VGTU.V/Prog.kurimo procesas/CnnApp/output/' + 'no_of_classes_' + str(no_of_classes) + '/'
+    dir_in_ = "E:\\PROJECTS\\CNN-word-recognition\\resources\\pngs\\"
+    dir_out_ = 'E:/PROJECTS/CNN-word-recognition/output/Spectr_full/' + 'no_of_classes_' + str(no_of_classes) + '/'
 
     if os.path.exists(dir_out_):
         rmtree(dir_out_)
