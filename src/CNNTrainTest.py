@@ -149,70 +149,72 @@ def cnn_TrainTest(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_typ
     #     imgs,labels = next(train_batches)
     #     showImages.plots(imgs, titles=labels)
 
-    #
-    #
-    # # network topology
-    # model = Sequential()
-    # model.add(Convolution2D(32, (3, 3), input_shape=input_shape))
-    # model.add(Activation('relu'))
-    # model.add(BatchNormalization())
-    # model.add(MaxPooling2D(pool_size=(3, 3)))
-    # #
-    # model.add(Convolution2D(64, (2, 2)))
-    # model.add(Activation('relu'))
-    # model.add(BatchNormalization())
-    # model.add(MaxPooling2D(pool_size=(3, 3)))
-    #
-    # model.add(Convolution2D(64, (2, 2)))
-    # model.add(Activation('relu'))
-    # model.add(BatchNormalization())
-    # model.add(MaxPooling2D(pool_size=(2, 2)))
-    #
-    # model.add(Flatten())
-    #
-    # model.add(Dense(64))
-    # model.add(Activation('relu'))
-    # model.add(BatchNormalization())
-    #
-    # model.add(Dense(no_of_classes))
-    # model.add(Activation('softmax'))
-    #
-    # # opt = SGD(lr=2e-3, momentum=0.9)
-    # opt = optimizers.Adam(lr=0.0001, beta_1=0.95, beta_2=0.999, epsilon=1e-08, decay=0.0005)
-    #
-    # print(model.summary())
-    #
-    # if gpu_no > 1:
-    #     model = multi_gpu.make_parallel(model, gpu_no)
-    #
-    # model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
-    #
-    # csv_log = callbacks.CSVLogger(csvPath, separator=',', append=False)
-    #
-    # checkpointer = callbacks.ModelCheckpoint(filepath=checkpointerPath, verbose=0, save_best_only=True, mode='min')
-    #
-    # # early_stopping=callbacks.EarlyStopping(monitor='val_loss', min_delta= 0, patience= 0, verbose= 0, mode= 'min')
-    #
-    # tbCallBack = keras.callbacks.TensorBoard(log_dir=graphPath, histogram_freq=0, write_graph=True, write_images=True)
-    #
-    # # print(len(test_img_data))
-    # history = model.fit_generator(
-    #     train_batches,
-    #     steps_per_epoch=(train_file_no // train_batch_size + 1) * gpu_no,
-    #     epochs=epochs,
-    #     verbose=1,
-    #     validation_data=valid_batches,
-    #     validation_steps=(validation_file_no // valid_batch_size + 1) * gpu_no,
-    #     callbacks=[checkpointer, tbCallBack, csv_log]
-    # )
-    #
-    # model.save('my_model.h5')
+
+    if os.path.isfile(path + '/Models/my_model.h5'):
+        model = load_model(path + '/Models/my_model.h5')
+    else:
+        # network topology
+        model = Sequential()
+        model.add(Convolution2D(32, (3, 3), input_shape=input_shape))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(MaxPooling2D(pool_size=(3, 3)))
+
+        model.add(Convolution2D(64, (2, 2)))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(MaxPooling2D(pool_size=(3, 3)))
+
+        model.add(Convolution2D(64, (2, 2)))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        model.add(Flatten())
+
+        model.add(Dense(64))
+        model.add(Activation('relu'))
+        model.add(BatchNormalization())
+
+        model.add(Dense(no_of_classes))
+        model.add(Activation('softmax'))
+
+        # opt = SGD(lr=2e-3, momentum=0.9)
+        opt = optimizers.Adam(lr=0.0001, beta_1=0.95, beta_2=0.999, epsilon=1e-08, decay=0.0005)
+
+        print(model.summary())
+
+        if gpu_no > 1:
+            model = multi_gpu.make_parallel(model, gpu_no)
+
+        model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+
+        csv_log = callbacks.CSVLogger(csvPath, separator=',', append=False)
+
+        checkpointer = callbacks.ModelCheckpoint(filepath=checkpointerPath, verbose=0, save_best_only=True, mode='min')
+
+        # early_stopping=callbacks.EarlyStopping(monitor='val_loss', min_delta= 0, patience= 0, verbose= 0, mode= 'min')
+
+        tbCallBack = keras.callbacks.TensorBoard(log_dir=graphPath, histogram_freq=0, write_graph=True, write_images=True)
+
+        # print(len(test_img_data))
+        history = model.fit_generator(
+            train_batches,
+            steps_per_epoch=(train_file_no // train_batch_size + 1) * gpu_no,
+            epochs=epochs,
+            verbose=1,
+            validation_data=valid_batches,
+            validation_steps=(validation_file_no // valid_batch_size + 1) * gpu_no,
+            callbacks=[checkpointer, tbCallBack, csv_log]
+        )
+
+        model.save(path + '/Models/my_model.h5')
 
     print('Testing model')
 
     # model = load_model(path + 'Models/02ClNoNoise/' + name + '.h5')
 
-    model = load_model(path + '/Models/my_model.h5')
+    # model = load_model(path + '/Models/my_model.h5')
 
     predictionResult = model.predict_generator(test_batches, steps=test_file_no // test_batch_size + 1, verbose=0)
     print(predictionResult)
