@@ -5,7 +5,7 @@ from os.path import isfile, join
 import math
 from shutil import copyfile, rmtree
 
-
+# TODO test directory should be empty and validation directory should not be empty
 def constructSets():
     no_of_classes = 2
     # dir_in_ = '/home/gpu/Documents/Data/Spectr_full/'
