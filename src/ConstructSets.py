@@ -6,7 +6,7 @@ import math
 from shutil import copyfile, rmtree
 
 # TODO test directory should be empty and validation directory should not be empty
-def constructSets():
+def construct_sets():
     no_of_classes = 2
     # dir_in_ = '/home/gpu/Documents/Data/Spectr_full/'
     dir_in_ = "E:\\PROJECTS\\CNN-word-recognition\\resources\\pngs\\"
@@ -61,4 +61,4 @@ def constructSets():
     print("Done")
 
 
-constructSets()
+construct_sets()
