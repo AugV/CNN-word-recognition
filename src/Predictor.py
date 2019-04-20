@@ -13,6 +13,7 @@ from keras import backend as K
 from keras.utils import np_utils
 
 
+
 def predict(data_type, experiment_folder, input_data_dir,
                   data_sub_type='', width=128, height=128, test_b_size=32):
     sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))

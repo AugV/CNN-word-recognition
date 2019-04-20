@@ -9,10 +9,11 @@
 # from ConstructSets import constructSets
 # constructSets()
 
-# Generates model
-from ModelGenerator import generate_model
-generate_model(50, 1, 64, 32, 'Spectr_full', 'no_of_classes_2', 'E:/PROJECTS/CNN-word-recognition/output/')
+# # Generates model
+# from ModelGenerator import generate_model
+# generate_model(50, 1, 64, 32, 'Spectr_full', 'no_of_classes_2', 'E:/PROJECTS/CNN-word-recognition/output/')
 
 # Predicts from user input
-# from Predictor import predict
-# predict('Spectr_full','no_of_classes_2','E:/PROJECTS/CNN-word-recognition/output/')
+from Predictor import predict
+# from PredictorService import predict
+predict('Spectr_full','no_of_classes_2','E:/PROJECTS/CNN-word-recognition/output/')
