@@ -7,10 +7,14 @@ from shutil import copyfile, rmtree
 
 # TODO test directory should be empty and validation directory should not be empty
 def construct_sets():
-    no_of_classes = 2
+    # no_of_classes = 2
+    image_path = '../resources/pngs/All'
+    no_of_classes = sum(os.path.isdir(os.path.join(image_path, i)) for i in os.listdir(image_path))
+    print(no_of_classes)
+
     # dir_in_ = '/home/gpu/Documents/Data/Spectr_full/'
-    dir_in_ = "E:\\PROJECTS\\CNN-word-recognition\\resources\\pngs\\"
-    dir_out_ = 'E:/PROJECTS/CNN-word-recognition/output/Spectr_full/' + 'no_of_classes_' + str(no_of_classes) + '/'
+    dir_in_ = "../resources/pngs/"
+    dir_out_ = '../training_input/Spectr_full/' + 'no_of_classes_' + str(no_of_classes) + '/'
 
     if os.path.exists(dir_out_):
         rmtree(dir_out_)
