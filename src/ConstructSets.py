@@ -8,7 +8,7 @@ from shutil import copyfile, rmtree
 # TODO test directory should be empty and validation directory should not be empty
 
 path_of_sets = ''
-
+experiment_folder = ''
 
 def construct_sets():
     image_path = '../resources/pngs/All'
@@ -19,7 +19,8 @@ def construct_sets():
     dir_out_ = '../training_input/Spectr_full/' + 'no_of_classes_' + str(no_of_classes) + '/'
     global path_of_sets
     path_of_sets = dir_out_
-    print(path_of_sets)
+    global experiment_folder
+    experiment_folder = 'no_of_classes_' + str(no_of_classes)
 
     if os.path.exists(dir_out_):
         rmtree(dir_out_)
@@ -70,5 +71,5 @@ def construct_sets():
     print("Done")
 
 
-def get_sets_path():
-    return path_of_sets
+def get_sets_info():
+    return path_of_sets, experiment_folder

@@ -23,7 +23,7 @@ from keras.utils import np_utils
 
 import multi_gpu
 
-def generate_model(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_type, experiment_folder, input_data_dir,
+def generate_model(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, experiment_folder, input_data_dir,
                    data_sub_type='', setSize=1, width=128, height=128, chanels=3):
     # set the tf seession
     sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
@@ -41,20 +41,19 @@ def generate_model(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_ty
 
     class_names = []
     # restore directory structure from passes path
-    datatype = data_type  # 'Cepstr'
     exp_folder = experiment_folder  # 'no_of_classes_111'
 
     if data_sub_type == '':
-        train_data_dir = input_data_dir + datatype + '/' + exp_folder + '/train/'
-        validation_data_dir = input_data_dir + datatype + '/' + exp_folder + '/validate/'
+        train_data_dir = input_data_dir + 'train/'
+        validation_data_dir = input_data_dir + 'validate/'
         path = '../Results'
     else:
-        train_data_dir = input_data_dir + datatype + '/' + data_sub_type + '/' + exp_folder + '/train/'
-        validation_data_dir = input_data_dir + datatype + '/' + data_sub_type + '/' + exp_folder + '/validate/'
+        train_data_dir = input_data_dir + '/train/'
+        validation_data_dir = input_data_dir + '/validate/'
         path = '../Results/' + data_sub_type
 
     # create the file name
-    run_name = '_' + datatype + '_' + exp_folder + '_' + str(train_batch_size) + '_' + str(valid_batch_size)
+    run_name = input_data_dir.replace('/', '_') + str(train_batch_size) + '_' + str(valid_batch_size)
 
     graphPath = path + '/' + exp_folder + '/Graph/' + run_name + '/'
     csvPath = path + '/' + exp_folder + '/'

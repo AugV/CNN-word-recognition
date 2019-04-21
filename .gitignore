@@ -8,8 +8,12 @@ venv/
 __pycache__/
 
 #rezultatu sudai
-output/
-
+Results/
+training_input/
+resources/pngs/All/*
+resources/pngs/All/*
+resources/user_png/test/*
+resources/wavs/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
