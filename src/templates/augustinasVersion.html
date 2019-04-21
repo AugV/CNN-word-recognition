@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CNN</title>
-</head>
+<html>
+<title>CNN</title>
 <body>
     <input id = "file-selector" type="file">
     <button id="predict-button">Predict</button>
@@ -12,6 +8,7 @@
     <p><span id="results">vienas</span></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script>
         let base64File;
         $("#file-selector").change(function(){

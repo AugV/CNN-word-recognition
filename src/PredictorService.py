@@ -1,25 +1,26 @@
 import base64
 
-from flask import request
-
-from flask import Flask
-import io
-import matplotlib.pyplot as plt
-from scipy import signal
-from scipy.io import wavfile
-import time
-
-app = Flask(__name__)
-
+from flask import request, Flask, render_template
+from flask_bootstrap import Bootstrap
 from keras.engine.saving import load_model
 from keras.preprocessing.image import ImageDataGenerator
-
+from scipy import signal
+from scipy.io import wavfile
+import io
+import matplotlib.pyplot as plt
+import time
 import os
+
+app = Flask(__name__, template_folder='templates')
+Bootstrap(app)
 
 global model
 model = load_model('../models/my_model.h5')
 model._make_predict_function()
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route("/prediction", methods=["POST"])
 def prediction():
