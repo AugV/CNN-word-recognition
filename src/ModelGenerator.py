@@ -47,11 +47,11 @@ def generate_model(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_ty
     if data_sub_type == '':
         train_data_dir = input_data_dir + datatype + '/' + exp_folder + '/train/'
         validation_data_dir = input_data_dir + datatype + '/' + exp_folder + '/validate/'
-        path = input_data_dir + datatype + '/Results'
+        path = '../Results'
     else:
         train_data_dir = input_data_dir + datatype + '/' + data_sub_type + '/' + exp_folder + '/train/'
         validation_data_dir = input_data_dir + datatype + '/' + data_sub_type + '/' + exp_folder + '/validate/'
-        path = input_data_dir + datatype + '/Results/' + data_sub_type
+        path = '../Results/' + data_sub_type
 
     # create the file name
     run_name = '_' + datatype + '_' + exp_folder + '_' + str(train_batch_size) + '_' + str(valid_batch_size)
@@ -177,7 +177,7 @@ def generate_model(no_of_epochs, no_of_gpus, train_b_size, valid_b_size, data_ty
         callbacks=[checkpointer, tbCallBack, csv_log]
     )
 
-    model.save(input_data_dir + '/Models/my_model.h5')
+    model.save("../models/my_model.h5")
 
     sess.close()
 
