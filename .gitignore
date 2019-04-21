@@ -10,10 +10,6 @@ __pycache__/
 #rezultatu sudai
 Results/
 training_input/
-resources/pngs/All/*
-resources/pngs/All/*
-resources/user_png/test/*
-resources/wavs/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
