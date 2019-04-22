@@ -32,11 +32,13 @@
         ;
         }
 
-        @media (min-width: 768px) { {
-            font-size: 3.5rem;
+        @media(min-width:576px) {body{background: cyan;}}
+        @media(min-width:768px) {body{background: lightblue;}}
+        @media(min-width:992px) {body{background: lightgreen;}}
+        @media(min-width:1200px) {body{background: yellow;}}
+        @media(max-width:575px) {body{background: gray;}}
+
         }
-        }
-        body { background: cornflowerblue !important; }
     </style>
     {% endblock styles %}
     <link href="jumbotron.css" rel="stylesheet">
