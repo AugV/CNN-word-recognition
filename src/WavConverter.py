@@ -49,5 +49,3 @@ def wav_to_png():
     plt.xlabel('Time [sec]')
     plt.show()
     '''
-
-wav_to_png()

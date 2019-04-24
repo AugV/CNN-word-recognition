@@ -26,7 +26,7 @@ def index():
 def prediction():
     message = request.get_json(force=True)
     encoded = message['wav']
-    print(encoded)
+    # print(encoded)
     decoded = base64.b64decode(encoded)
     sample_rate, samples = wavfile.read(io.BytesIO(decoded))
     frequencies, times, spectrogram = signal.spectrogram(samples, sample_rate)
@@ -45,7 +45,7 @@ def prediction():
     predictionResult = model.predict_generator(test_batches, steps=1, verbose=0)
 
     print(predictionResult)
-    os.remove(
-        '../resources/user_png/test/' + test_case_name + '.png')
+    # os.remove(
+    #     '../resources/user_png/test/' + test_case_name + '.png')
 
     return str(predictionResult)

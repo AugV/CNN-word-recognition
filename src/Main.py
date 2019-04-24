@@ -1,7 +1,6 @@
 # converts all wavs to png for model generation
-# from WavConverter import wav_to_png
-# wav_file_path = ''
-# wav_to_png()
+from WavConverter import wav_to_png
+wav_to_png()
 
 # sets up the folder structure for training(model generation)
 from ConstructSets import construct_sets, get_sets_info
